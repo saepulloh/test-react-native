@@ -13,6 +13,7 @@ import HomeScreen from './src/HomeScreen'
 import DetailsScreen from './src/DetailsScreen'
 import ModalScreen from './src/ModalScreen'
 
+
 class LogoTitle extends React.Component {
   render() {
     return (
@@ -24,6 +25,17 @@ class LogoTitle extends React.Component {
   }
 }
 
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
+
+
 const MainStack = createStackNavigator(
   {
     Home: {
@@ -32,6 +44,7 @@ const MainStack = createStackNavigator(
     Details: {
       screen: DetailsScreen,
     },
+
   },
   {
     initialRouteName: 'Home',
@@ -47,7 +60,7 @@ const MainStack = createStackNavigator(
   }
 );
 
-export default createStackNavigator(
+const HomeWithModal = createStackNavigator(
   {
     Main: {
       screen: MainStack,
@@ -61,4 +74,7 @@ export default createStackNavigator(
     headerMode: 'none',
   }
 );
-
+export default createBottomTabNavigator({
+  Home: HomeWithModal,
+  Settings: SettingsScreen,
+});
